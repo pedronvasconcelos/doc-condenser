@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class Document {
+public class ResumeDocument {
 
     public UUID id;
     public String title;
@@ -85,7 +85,7 @@ public class Document {
         this.aiKeywords = keywords;
     }
 
-    public Document(String title, String content, String fileName, FileExtension extension, String size, String author, String link, List<String> userKeywords) {
+    public ResumeDocument(String title, String content, String fileName, FileExtension extension, String size, String author, String link, List<String> userKeywords) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.content = content;
@@ -97,6 +97,21 @@ public class Document {
         this.author = author;
         this.link = link;
         this.userKeywords = userKeywords;
+    }
+
+    public ResumeDocument(String id, String title, String content, String fileName, FileExtension extension, String size, String author, String link, List<String> userKeywords, Date creationDate) {
+        this.id = UUID.fromString(id);
+        this.title = title;
+        this.content = content;
+        this.fileName = fileName;
+        this.extension = extension;
+        this.size = size;
+        this.creationDate = new Date();
+        this.lastQueryDate = new Date();
+        this.author = author;
+        this.link = link;
+        this.userKeywords = userKeywords;
+        this.creationDate = creationDate;
     }
 
 

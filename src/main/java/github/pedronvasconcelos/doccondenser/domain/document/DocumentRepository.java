@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public interface DocumentRepository {
 
-        Document find(UUID id);
+        ResumeDocument find(UUID id);
 
-        Document getByKeywords(List<String> keywords);
-        void store(Document document);
+        ResumeDocument getByKeywords(List<String> keywords);
+        void store(ResumeDocument resumeDocument);
 
 
 }

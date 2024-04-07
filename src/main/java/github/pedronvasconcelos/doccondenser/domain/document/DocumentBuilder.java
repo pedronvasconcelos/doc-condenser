@@ -1,6 +1,5 @@
 package github.pedronvasconcelos.doccondenser.domain.document;
 
-import java.util.Date;
 import java.util.List;
 
 public class DocumentBuilder {
@@ -54,7 +53,7 @@ public class DocumentBuilder {
         return this;
     }
 
-    public Document build() {
-        return new Document(title, content, fileName, extension, size, author, link, keywords);
+    public ResumeDocument build() {
+        return new ResumeDocument(title, content, fileName, extension, size, author, link, keywords);
     }
 }

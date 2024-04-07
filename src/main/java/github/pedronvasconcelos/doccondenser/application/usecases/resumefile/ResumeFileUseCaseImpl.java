@@ -4,7 +4,7 @@ import github.pedronvasconcelos.doccondenser.application.interfaces.AIService;
 import github.pedronvasconcelos.doccondenser.application.interfaces.FileReaderService;
 import github.pedronvasconcelos.doccondenser.application.interfaces.FileStorageService;
 import github.pedronvasconcelos.doccondenser.application.models.ResumeDTO;
-import github.pedronvasconcelos.doccondenser.domain.document.Document;
+import github.pedronvasconcelos.doccondenser.domain.document.ResumeDocument;
 import github.pedronvasconcelos.doccondenser.domain.document.DocumentBuilder;
 import github.pedronvasconcelos.doccondenser.domain.document.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class ResumeFileUseCaseImpl implements ResumeFileUseCase{
         String size = content.length() + " bytes";
         List<String> keywords = new ArrayList<String>();
 
-        Document document = new DocumentBuilder()
+        ResumeDocument resumeDocument = new DocumentBuilder()
                 .withContent(content)
                 .withAuthor(resumeFileRequest.author)
                 .withExtension(resumeFileRequest.Extension)
@@ -48,12 +48,12 @@ public class ResumeFileUseCaseImpl implements ResumeFileUseCase{
                 .withSize(size)
                 .withTitle(resumeFileRequest.documentTitle)
                 .build();
-        documentRepository.store(document);
+        documentRepository.store(resumeDocument);
         ResumeDTO resumeDTO = aiService.generateResume(content);
         if (resumeDTO != null) {
             throw new RuntimeException("Error while generating resume");
         }
-        document.setResume(resumeDTO.resume, keywords);
+        resumeDocument.setResume(resumeDTO.resume, keywords);
         return ResumeFileResponse.fromDto(resumeDTO, resumeFileRequest.fileName);
     }
 }
