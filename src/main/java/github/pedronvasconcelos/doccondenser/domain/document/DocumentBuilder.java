@@ -10,11 +10,10 @@ public class DocumentBuilder {
     private String fileName;
     private FileExtension extension;
     private String size;
-    private Date creationDate;
-    private Date lastQueryDate;
     private String author;
     private String link;
     private List<String> keywords;
+
 
     public DocumentBuilder withTitle(String title) {
         this.title = title;
@@ -25,11 +24,17 @@ public class DocumentBuilder {
         this.content = content;
         return this;
     }
+    public DocumentBuilder withAuthor(String author) {
+        this.author = author;
+        return this;
+    }
 
     public DocumentBuilder withFileName(String fileName) {
         this.fileName = fileName;
-        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-        this.extension = FileExtension.valueOf(extension.toUpperCase());
+        return this;
+    }
+    public DocumentBuilder withExtension(FileExtension extension) {
+        this.extension = extension;
         return this;
     }
 
