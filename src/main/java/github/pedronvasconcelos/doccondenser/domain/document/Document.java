@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class DocumentToResume {
+public class Document {
 
     public UUID id;
     public String title;
@@ -20,8 +20,8 @@ public class DocumentToResume {
     public String link;
     public List<String> userKeywords;
     public List<String> aiKeywords;
-    public boolean ResumeGenerated;
-    public Date LastResumeGenerationDate;
+    public boolean resumeGenerated;
+    public Date lastResumeGenerationDate;
 
     //region getters
     public UUID getId() {
@@ -77,7 +77,15 @@ public class DocumentToResume {
     }
 
     //endregion
-    public DocumentToResume(String title, String content, String fileName, FileExtension extension, String size, String author, String link, List<String> userKeywords) {
+
+    public void setResume(String resume, List<String> keywords) {
+        this.resume = Optional.of(resume);
+        this.lastResumeGenerationDate = new Date();
+        this.resumeGenerated = true;
+        this.aiKeywords = keywords;
+    }
+
+    public Document(String title, String content, String fileName, FileExtension extension, String size, String author, String link, List<String> userKeywords) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.content = content;

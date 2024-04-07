@@ -49,7 +49,7 @@ public class DocumentBuilder {
         return this;
     }
 
-    public DocumentToResume build() {
-        return new DocumentToResume(title, content, fileName, extension, size, author, link, keywords);
+    public Document build() {
+        return new Document(title, content, fileName, extension, size, author, link, keywords);
     }
 }
